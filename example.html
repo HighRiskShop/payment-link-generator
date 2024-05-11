@@ -71,6 +71,11 @@ form.addEventListener('submit', async (event) => {
     paymentLinkDiv.innerHTML = `<p style="color: red;">Minimum amount for ${provider} is $${minAmounts[provider]}</p>`;
     return;
   }
+  
+  if (currency !== 'USD' && (provider === 'wert' || provider === 'rampnetwork')) {
+    paymentLinkDiv.innerHTML = `<p style="color: red;">${provider} supports USD currency only.</p>`;
+    return;
+  }
 
   const payoutTrackingId = `https://www.highriskshop.com/payment-link/invoice.php?payment=${Date.now()}_${Math.floor(Math.random() * 9000000) + 1000000}`;
   const callback = encodeURIComponent(payoutTrackingId);
