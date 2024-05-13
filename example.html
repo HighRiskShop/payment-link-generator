@@ -33,6 +33,9 @@
             <option value="mercuryo">mercuryo.io</option>
             <option value="rampnetwork">ramp.network (USD)</option>
             <option value="moonpay">MoonPay</option>
+			<option value="alchemypay">Alchemy Pay</option>
+			<option value="utorg">UTORG</option>
+			<option value="transfi">Transfi</option>
         </select><br><br>
         
         <input style="border-radius:7px;" type="submit" value="Submit">
@@ -45,10 +48,13 @@ const paymentLinkDiv = document.getElementById('payment-link');
 
 const minAmounts = {
   'wert': 1,
-  'guardarian': 2,
+  'guardarian': 3,
   'particle': 2,
   'transak': 5,
-  'banxa': 6,
+  'banxa': 50,
+  'utorg': 50,
+  'transfi': 66,
+  'alchemypay': 15,	
   'mercuryo': 27,
   'rampnetwork': 5,
   'moonpay': 30
