@@ -53,7 +53,7 @@ const minAmounts = {
   'transak': 5,
   'banxa': 50,
   'utorg': 50,
-  'transfi': 66,
+  'transfi': 70,
   'alchemypay': 15,	
   'mercuryo': 27,
   'rampnetwork': 5,
@@ -78,7 +78,7 @@ form.addEventListener('submit', async (event) => {
     return;
   }
   
-  if (currency !== 'USD' && (provider === 'wert' || provider === 'rampnetwork')) {
+  if (currency !== 'USD' && (provider === 'wert' || provider === 'transfi' || provider === 'rampnetwork')) {
     paymentLinkDiv.innerHTML = `<p style="color: red;">${provider} supports USD currency only.</p>`;
     return;
   }
