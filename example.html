@@ -21,6 +21,7 @@
         <select id="currency" name="currency" required="">
             <option value="USD">USD</option>
             <option value="EUR">EUR</option>
+			<option value="INR">INR</option>
         </select><br>
         
         <label for="provider">Provider:</label><br>
@@ -41,6 +42,7 @@
 			<option value="utorg">UTORG</option>
             <option value="topper">Topper</option>
 			<option value="transfi">Transfi (USD)</option>
+			<option value="upi">UPI/IMPS (INR)</option>
         </select><br><br>
         
         <input style="border-radius:7px;" type="submit" value="Submit">
@@ -67,6 +69,7 @@ const minAmounts = {
   'mercuryo': 30,
   'topper': 10,
   'rampnetwork': 5,
+  'upi': 100,
   'moonpay': 30
 };
 
@@ -90,6 +93,11 @@ form.addEventListener('submit', async (event) => {
 
   if (currency !== 'USD' && (provider === 'wert' || provider === 'stripe' || provider === 'transfi' || provider === 'rampnetwork')) {
     paymentLinkDiv.innerHTML = `<p style="color: red;">${provider} supports USD currency only.</p>`;
+    return;
+  }
+  
+   if (currency !== 'INR' && (provider === 'upi')) {
+    paymentLinkDiv.innerHTML = `<p style="color: red;">${provider} supports INR currency only.<\/p>`;
     return;
   }
 	
