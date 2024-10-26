@@ -21,6 +21,7 @@
         <select id="currency" name="currency" required="">
             <option value="USD">USD</option>
             <option value="EUR">EUR</option>
+			<option value="EUR">CAD</option>
 			<option value="INR">INR</option>
         </select><br>
         
@@ -33,19 +34,21 @@
             <option value="particle">particle.network</option>
             <option value="transak">Transak</option>
             <option value="banxa">Banxa</option>
+			<option value="simplex">Simplex</option>
             <option value="changenow">ChangeNOW</option>
             <option value="mercuryo">mercuryo.io</option>
-			<option value="simpleswap">SimpleSwap</option>
             <option value="rampnetwork">ramp.network (USD)</option>
             <option value="moonpay">MoonPay</option>
 			<option value="alchemypay">Alchemy Pay</option>
 			<option value="robinhood">Robinhood (USD)</option>
 			<option value="coinbase">coinbase PAY</option>
+			<option value="utorg">UTORG</option>
 			<option value="unlimit">Unlimit</option>
 			<option value="bitnovo">Bitnovo</option>
-			<option value="utorg">UTORG</option>
+			<option value="simpleswap">SimpleSwap</option>
             <option value="topper">Topper</option>
 			<option value="transfi">Transfi (USD)</option>
+			<option value="interac">Interac (CAD)</option>
 			<option value="upi">UPI/IMPS (INR)</option>
         </select><br><br>
         
@@ -65,10 +68,11 @@ const minAmounts = {
   'stripe': 2,
   'coinbase': 2,
   'transak': 15,
-  'simpleswap': 30,
-  'sardine': 30,	
+  'sardine': 30,
+'simpleswap': 30,  
   'banxa': 50,
   'utorg': 50,
+  'simplex': 50,
   'changenow': 50,
   'transfi': 70,
   'alchemypay': 5,	
@@ -78,6 +82,7 @@ const minAmounts = {
   'bitnovo': 10,
   'rampnetwork': 5,
   'upi': 100,
+  'interac': 100,
   'moonpay': 30
 };
 
@@ -106,6 +111,11 @@ form.addEventListener('submit', async (event) => {
   
    if (currency !== 'INR' && (provider === 'upi')) {
     paymentLinkDiv.innerHTML = `<p style="color: red;">${provider} supports INR currency only.<\/p>`;
+    return;
+  }
+  
+    if (currency !== 'CAD' && (provider === 'interac')) {
+    paymentLinkDiv.innerHTML = `<p style="color: red;">${provider} supports CAD currency only.<\/p>`;
     return;
   }
 	
