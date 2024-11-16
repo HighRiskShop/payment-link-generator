@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>Generate a Payment Link</title>
-<link rel="canonical" href="https://www.highriskshop.com/payment-link/" />
+<link rel="canonical" href="https://paygate.to/payment-link/" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <head>
 <body>
@@ -47,6 +47,9 @@
 			<option value="bitnovo">Bitnovo</option>
 			<option value="simpleswap">SimpleSwap</option>
             <option value="topper">Topper</option>
+			<option value="swipelux">Swipelux</option>
+			<option value="kado">Kado.money</option>
+			<option value="itez">Itez</option>
 			<option value="transfi">Transfi (USD)</option>
 			<option value="interac">Interac (CAD)</option>
 			<option value="upi">UPI/IMPS (INR)</option>
@@ -69,7 +72,7 @@ const minAmounts = {
   'coinbase': 2,
   'transak': 15,
   'sardine': 30,
-'simpleswap': 30,  
+  'simpleswap': 30,  
   'banxa': 50,
   'utorg': 50,
   'simplex': 50,
@@ -78,6 +81,9 @@ const minAmounts = {
   'alchemypay': 5,	
   'mercuryo': 30,
   'topper': 10,
+  'swipelux': 5,
+  'kado': 10,
+  'itez': 35,
   'unlimit': 10,
   'bitnovo': 10,
   'rampnetwork': 5,
@@ -119,18 +125,18 @@ form.addEventListener('submit', async (event) => {
     return;
   }
 	
-  const payoutTrackingId = `https://www.highriskshop.com/payment-link/invoice.php?payment=${Date.now()}_${Math.floor(Math.random() * 9000000) + 1000000}`;
+  const payoutTrackingId = `https://paygate.to/payment-link/invoice.php?payment=${Date.now()}_${Math.floor(Math.random() * 9000000) + 1000000}`;
   const callback = encodeURIComponent(payoutTrackingId);
 
   try {
-    const response = await fetch(`https://api.highriskshop.com/control/wallet.php?address=${walletAddress}&callback=${callback}`);
+    const response = await fetch(`https://api.paygate.to/control/wallet.php?address=${walletAddress}&callback=${callback}`);
     const data = await response.json();
 
     if (data && data.address_in) {
       const addressIn = data.address_in;
       const callbackUrl = data.callback_url;
       const customerEmail = encodeURIComponent(emailAddress);
-      const paymentLink = `https://pay.highriskshop.com/process-payment.php?address=${addressIn}&amount=${amount}&provider=${provider}&email=${customerEmail}&currency=${currency}`;
+      const paymentLink = `https://checkout.paygate.to/process-payment.php?address=${addressIn}&amount=${amount}&provider=${provider}&email=${customerEmail}&currency=${currency}`;
 
       // Create a container div for the payment link
       const paymentLinkContainer = document.createElement('div');
